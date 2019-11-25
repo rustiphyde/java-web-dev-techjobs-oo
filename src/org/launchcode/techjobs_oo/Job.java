@@ -31,7 +31,22 @@ public class Job {
         this.coreCompetency = aCoreCompetency;
     }
 
+    @Override
+    public String toString(){
 
+        String s = String.join("\n"
+                ," "
+                , "ID: " + id
+                ,"Name: " + emptyChecker(name)
+                ,"Employer: " + emptyChecker(employer.getValue())
+                , "Location: " + emptyChecker(location.getValue())
+                , "Position Type: " + emptyChecker(positionType.getValue())
+                ,"Core Competency: " + emptyChecker(coreCompetency.getValue())
+                , " "
+        );
+
+        return s;
+    }
 
     // Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
@@ -97,4 +112,10 @@ public class Job {
     public int getId() {
         return id;
     }
-}
+
+    public String emptyChecker(String val){
+        if (val.isEmpty()){
+            return "Data not available";
+        } else return val;
+    };
+};

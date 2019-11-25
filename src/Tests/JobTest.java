@@ -40,4 +40,32 @@ public class JobTest {
         Job job_five = new Job("Equality Tester", new Employer("Test Employer"), new Location("Test Location"), new PositionType("Test Type"), new CoreCompetency("Testing Things"));
         assertFalse(job_four.equals(job_five));
     }
+
+    @Test
+    public void testWhitespace(){
+        Job job_six = new Job( "Namefield", new Employer("Empfield"), new Location("Locfield"), new PositionType("PTfield"), new CoreCompetency("CCfield"));
+        assertTrue(job_six.toString().startsWith(" "));
+        assertTrue(job_six.toString().endsWith(" "));
+    }
+
+    @Test
+    public void testFieldPopulation(){
+        Job job_seven = new Job( "Namefield", new Employer("Empfield"), new Location("Locfield"), new PositionType("PTfield"), new CoreCompetency("CCfield"));
+        String[] sA = job_seven.toString().split("\n");
+        assertEquals( "Name: Namefield", sA[2]);
+        assertEquals("Employer: Empfield", sA[3]);
+        assertEquals( "Location: Locfield", sA[4]);
+        assertEquals("Position Type: PTfield", sA[5] );
+        assertEquals("Core Competency: CCfield", sA[6] );
+    }
+
+    @Test
+    public void testDataNotAvailable(){
+        Job job_eight = new Job( "", new Employer("Empfield"), new Location("Locfield"), new PositionType("PTfield"), new CoreCompetency("CCfield"));
+        String[] sA = job_eight.toString().split("\n");
+        assertEquals("Name: Data not available", sA[2]);
+
+    }
 }
+
+
